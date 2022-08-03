@@ -25,9 +25,11 @@ const userSchema = mongoose.Schema({
   name: String,
   surname: String,
   driversLicense: Number,
-  wallet: Number,
-});
-
+  wallet: {
+    type: Number,
+    default: 0,
+  }
+})
 const User = mongoose.model("User", userSchema);
 
 module.exports = User
