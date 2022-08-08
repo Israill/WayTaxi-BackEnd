@@ -18,5 +18,7 @@ router.get("/refresh", userController.refresh);
 router.get("/users", userController.getUser);
 router.patch("/users/:id", userController.patchUser);
 router.patch("/wallet/:id", userController.topUpWallet);
+router.post("/paymentTaxi/driver/:id", userController.paymentTaxi);
+
 
 module.exports = router;
