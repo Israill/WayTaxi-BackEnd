@@ -28,7 +28,13 @@ const userSchema = mongoose.Schema({
   wallet: {
     type: Number,
     default: 0,
-  }
+  },
+  rating: [],
+  counter: {
+    type: Number,
+    default: 0
+  },
+  averageRating: Number
 })
 const User = mongoose.model("User", userSchema);
 

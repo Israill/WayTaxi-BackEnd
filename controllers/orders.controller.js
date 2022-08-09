@@ -4,7 +4,7 @@ module.exports.orderController = {
   postOrder: async (req, res) => {
     try {
       const newOrder = await Order.create({
-        taxiId: req.body.taxiId,
+        taxiId: req.user.id,
         where: req.body.where,
         wherever: req.body.wherever,
         user: req.user.id,
