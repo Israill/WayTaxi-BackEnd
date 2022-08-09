@@ -164,6 +164,11 @@ class userController {
     } catch (error) {
       res.json({error: error.message})
 
+    }
+  }
+
+  //;osdijosjf
+
   async paymentTaxi(req, res, next) {
     try {
       // const userId = req.user.id;
@@ -204,5 +209,5 @@ class userController {
     }
   }
 }
-
+//fdkgmd hkgjhnuulhj
 module.exports = new userController();
