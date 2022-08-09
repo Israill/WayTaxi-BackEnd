@@ -18,11 +18,8 @@ router.get("/refresh", userController.refresh);
 router.get("/users", userController.getUser);
 router.patch("/users/:id", userController.patchUser);
 router.patch("/wallet/:id", userController.topUpWallet);
-<<<<<<< HEAD
 router.patch("/users/rating/:id", userController.patchUserRait);
-=======
 router.post("/paymentTaxi/driver/:id", userController.paymentTaxi);
 
->>>>>>> main
 
 module.exports = router;
