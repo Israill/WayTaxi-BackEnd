@@ -163,6 +163,44 @@ class userController {
       return res.json(rait)
     } catch (error) {
       res.json({error: error.message})
+
+  async paymentTaxi(req, res, next) {
+    try {
+      // const userId = req.user.id;
+
+      const client = await User.findById(req.body.userId);
+      // return res.json(client.wallet)
+
+      if (client.wallet <= 0) {
+        return res.json(
+          "У вас недостачно денежных средств. Пожалуйста пополните баланс."
+        ) 
+      } else {
+        res.json("Оплата прошла успешно")
+      }
+
+      const driver = await User.findById(req.params.id);
+
+      const upCash = driver.wallet + req.body.payment;
+
+      const downCash = client.wallet - req.body.payment;
+
+      const downCashClient = await User.findByIdAndUpdate(
+        client._id,
+        {
+          wallet: downCash,
+        },
+        { new: true }
+      );
+
+      const upCashDriver = await User.findByIdAndUpdate(driver._id, {
+        wallet: upCash,
+      });
+
+      return res.json(driver);
+    } catch (error) {
+      res.json(error.message);
+
     }
   }
 }
