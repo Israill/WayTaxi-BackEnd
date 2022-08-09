@@ -111,7 +111,7 @@ class userController {
   async patchUser(req, res, next) {
     try {
       const { id } = req.params;
-      const { role, phone, name, surname, driversLicense, wallet } = req.body;
+      const { role, phone, name, surname, driversLicense, wallet, rating, counter } = req.body;
 
       const users = await User.findByIdAndUpdate(id, {
         role,
@@ -120,6 +120,8 @@ class userController {
         surname,
         driversLicense,
         wallet,
+        rating,
+        counter
       });
       return res.json(users);
     } catch (e) {
@@ -137,6 +139,30 @@ class userController {
       res.json(result);
     } catch (error) {
       next(error);
+    }
+  }
+
+  async patchUserRait(req, res) {
+    try {
+
+      const rait = await User.findByIdAndUpdate(req.params.id, {
+        $push: {
+          rating: req.body.star,
+        },
+      }, {new: true});
+
+      const reduceRating = rait.rating.reduce((item, acc) => item += acc)
+      const averageRating = (reduceRating / rait.rating.length).toFixed(1)
+
+      await User.findByIdAndUpdate(req.params.id, {
+        $set: {
+          averageRating: averageRating,
+        },
+      }, {new: true});
+      
+      return res.json(rait)
+    } catch (error) {
+      res.json({error: error.message})
     }
   }
 }
