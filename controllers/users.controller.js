@@ -163,8 +163,11 @@ class userController {
       return res.json(rait)
     } catch (error) {
       res.json({error: error.message})
+
     }
   }
+
+  //;osdijosjf
 
   async paymentTaxi(req, res, next) {
     try {
