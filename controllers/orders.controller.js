@@ -5,8 +5,8 @@ module.exports.orderController = {
     try {
       const newOrder = await Order.create({
         taxiId: req.user.id,
-        where: req.body.where,
-        wherever: req.body.wherever,
+        from: req.body.from,
+        to: req.body.to,
         user: req.user.id,
         price: req.body.price,
       });
@@ -26,8 +26,8 @@ module.exports.orderController = {
   updateOrder: async (req, res) => {
     try {
       const updateOrder = await Order.findByIdAndUpdate(req.params.id, {
-        where: req.body.where,
-        wherever: req.body.wherever,
+        from: req.body.from,
+        to: req.body.to,
         price: req.body.price,
       });
       res.json(updateOrder);

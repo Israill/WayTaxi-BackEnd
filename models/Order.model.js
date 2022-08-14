@@ -1,8 +1,8 @@
 const mongoose = require("mongoose");
 
 const orderSchema = mongoose.Schema({
-  where: String,
-  wherever: String,
+  from: String,
+  to: String,
   user: {
     type: mongoose.Schema.Types.ObjectId,
     ref: "User",
